@@ -14,7 +14,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Color endColor;
     [SerializeField] private float fadeInTime;
 
-    private float realDeltaTime => (Time.deltaTime * (1 / Time.timeScale));
+    private float RealDeltaTime => (Time.deltaTime * (1 / Time.timeScale));
     private decimal realTime = 0;
 
 
@@ -37,7 +37,7 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        realTime += (decimal)realDeltaTime;
+        realTime += (decimal)RealDeltaTime;
         if (realTime >= 1 && !Loaded)
         {
             Loaded = true;
@@ -66,7 +66,7 @@ public class GameManager : MonoBehaviour
         float g = fadeIn.material.color.g;
         float b = fadeIn.material.color.b;
         float a = fadeIn.material.color.a;
-        for (float t = 0.0f; t < 1.0f; t += realDeltaTime / fadeInTime)
+        for (float t = 0.0f; t < 1.0f; t += RealDeltaTime / fadeInTime)
         {
             Color newColor = new Color(Mathf.Lerp(r, endColor.r, t), Mathf.Lerp(g, endColor.g, t), Mathf.Lerp(b, endColor.b, t), Mathf.Lerp(a, endColor.a, t));
             fadeIn.color = newColor;
